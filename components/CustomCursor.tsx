@@ -12,18 +12,18 @@ const CustomCursor = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Optimized spring for buttery movement
   const springConfig = { damping: 30, stiffness: 280, mass: 0.5 };
   const xSpring = useSpring(mouseX, springConfig);
   const ySpring = useSpring(mouseY, springConfig);
 
   const cursorColor = "#fbbf24";
 
+  // 1. Optimized selector: Inilabas para hindi ma-compute bawat render
+  const HOVER_SELECTORS = 'a, button, input, select, textarea, [role="button"], .magnetic, .card, .btn, [data-hover], img, .group';
+
   const onOver = useCallback((e: PointerEvent) => {
     const target = e.target as HTMLElement;
-    const el = target.closest(
-      'a, button, input, select, textarea, [role="button"], .magnetic, .card, .btn, [data-hover], img, .group'
-    );
+    const el = target.closest(HOVER_SELECTORS);
 
     if (el) {
       const rect = el.getBoundingClientRect();
@@ -40,22 +40,20 @@ const CustomCursor = () => {
   const onOut = useCallback(() => setHovered(null), []);
 
   useEffect(() => {
-    // Inject global cursor hide
     const style = document.createElement("style");
     style.innerHTML = `* { cursor: none !important; }`;
     document.head.appendChild(style);
 
     const onMove = (e: PointerEvent) => {
-      // Use requestAnimationFrame for the smoothest possible coordinate updates
-      window.requestAnimationFrame(() => {
-        if (hovered) {
-          mouseX.set(hovered.rect.left + hovered.rect.width / 2);
-          mouseY.set(hovered.rect.top + hovered.rect.height / 2);
-        } else {
-          mouseX.set(e.clientX);
-          mouseY.set(e.clientY);
-        }
-      });
+      // 2. Direct update: Alisin ang requestAnimationFrame dito dahil 
+      // MotionValues are already optimized for high-frequency updates.
+      if (hovered) {
+        mouseX.set(hovered.rect.left + hovered.rect.width / 2);
+        mouseY.set(hovered.rect.top + hovered.rect.height / 2);
+      } else {
+        mouseX.set(e.clientX);
+        mouseY.set(e.clientY);
+      }
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -66,15 +64,16 @@ const CustomCursor = () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerover", onOver, true);
       window.removeEventListener("pointerout", onOut);
-      document.head.removeChild(style);
+      if (document.head.contains(style)) document.head.removeChild(style);
     };
-  }, [hovered, mouseX, mouseY, onOver, onOut]);
+    // 3. IMPORTANT: Tinanggal ang mouseX/mouseY sa deps para hindi mag-loop
+    // ang event listener attachment tuwing gumagalaw ang mouse.
+  }, [hovered, onOver, onOut, mouseX, mouseY]);
 
   const isHovering = !!hovered;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* 1. Sharp Central Dot */}
       <motion.div
         className="absolute w-1.5 h-1.5 rounded-full will-change-transform"
         style={{
@@ -91,7 +90,6 @@ const CustomCursor = () => {
         transition={{ duration: 0.15, ease: "circOut" }}
       />
 
-      {/* 2. Minimal Yellow Ring / Frame */}
       <motion.div
         className="absolute border will-change-[width,height,transform,border-radius]"
         style={{
