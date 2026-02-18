@@ -5,6 +5,7 @@ import CsharpIcon from '@/components/icons/CsharpIcon';
 import { FaUnity } from 'react-icons/fa';
 import { SiHtml5, SiCss3, SiCanva, SiKrita } from 'react-icons/si';
 
+// DITO MAG LALAGAY NG NG TECH STACK AT TOOLS
 const skills = [
   { icon: FaUnity, label: 'Unity', colorClass: 'text-yellow-400' },
   { icon: CsharpIcon, label: 'C#', colorClass: 'text-purple-400' },
