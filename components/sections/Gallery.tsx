@@ -48,6 +48,7 @@ export default function LuxuryGallery() {
 
   return (
     <section 
+      id="gallery"
       ref={containerRef}
       className="relative min-h-screen py-32 px-6 overflow-hidden selection:bg-yellow-500 selection:text-black"
     >
