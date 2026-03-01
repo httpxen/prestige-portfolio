@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💎 Prestige Portfolio
 
-## Getting Started
+A high-end, responsive personal portfolio designed to showcase professional web development projects, technical skills, and creative services with a modern dark-themed aesthetic.
 
-First, run the development server:
+🚀 **Live Demo:** [prestige-portfolio.vercel.app](https://prestige-portfolio.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Premium UI/UX:** Minimalist dark-mode design focused on readability and professional presentation.
+* **Fully Responsive:** Optimized for a seamless experience across mobile, tablet, and desktop devices.
+* **Smooth Interactivity:** Integrated animations and transitions for an engaging user journey.
+* **Key Sections:**
+    * **Hero Section:** High-impact introduction.
+    * **About Me:** A professional summary of my background and goals.
+    * **Services:** Detailed breakdown of my specialized offerings.
+    * **Portfolio:** Interactive gallery of my latest work and projects.
+    * **Contact:** Streamlined communication portal for potential collaborations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+This project was built using modern web standards to ensure performance and scalability:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **Markup:** HTML5
+* **Styling:** CSS3 (Custom properties, Flexbox, and Grid)
+* **Interactivity:** Vanilla JavaScript (ES6+)
+* **Deployment:** [Vercel](https://vercel.com/)
